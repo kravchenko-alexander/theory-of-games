@@ -4,10 +4,18 @@
     <title>TheoryOfGamesAndDecisions</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
 
   <body>
-    <%= yield %>
+    <nav>
+      <%= link_to 'Исходные данные', decisions_initial_path %>
+      <%= link_to 'Парето', decisions_pareto_path %>
+      <%= link_to 'Нормализированные', decisions_normalized_path %>
+      <%= link_to 'ELECTRE', decisions_electre_path %>
+    </nav>
+    <div>
+      <%= yield %>
+    </div>
   </body>
 </html>

@@ -1,0 +1,39 @@
+<table>
+  <thead>
+  <tr>
+    <th>Таблица парных сравнений</th>
+    <% Alternative.all.each do |alternative| %>
+        <th><%= alternative.name %></th>
+    <% end %>
+  </tr>
+  </thead>
+  <tbody>
+    <% @results.each do |result| %>
+      <tr>
+        <th><%= result[0].name %></th>
+        <% result[1].each do |value| %>
+          <th><%= value.round(3) %></th>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+  <tr>
+    <th>Лучшая Альтернатива</th>
+    <% Criterion.all.each do |criterion| %>
+        <th><%= "#{criterion.name}, #{criterion.measure}" %></th>
+    <% end %>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th><%= @alternative.name %></th>
+      <% Criterion.all.each do |criterion| %>
+          <th><%= @alternative.fetch_vector_by(criterion.id).mark.name %></th>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
