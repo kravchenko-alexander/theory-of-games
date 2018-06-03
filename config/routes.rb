@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   get 'votes/', to: 'votes#index'
   get 'votes/majority', to: 'votes#absolute_majority'
   get 'votes/simpson', to: 'votes#simpson'
+
+  get 'game', to: 'games#ship_mine'
 end

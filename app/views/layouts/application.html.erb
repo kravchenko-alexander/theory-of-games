@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
@@ -16,6 +17,7 @@
       <%= link_to 'Голосование', votes_path %>
       <%= link_to 'Правило абсолютного большинства', votes_majority_path %>
       <%= link_to 'Правило Симпсона', votes_simpson_path %>
+      <%= link_to 'Игра', game_path %>
     </nav>
     <div>
       <%= yield %>
