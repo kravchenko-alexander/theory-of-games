@@ -1,0 +1,125 @@
+<h1>Первый тур</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Альтернатива</th>
+    <th>Кол-во голосов</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @first_tour.each do |result| %>
+      <tr>
+        <th><%= result.first.name %></th>
+        <th><%= (result.last * 100).round(1) %>%</th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if @first_tour_winner.present? %>
+    <table>
+      <thead>
+      <tr>
+        <th>Лучшая Альтернатива</th>
+        <% Criterion.all.each do |criterion| %>
+            <th><%= "#{criterion.name}, #{criterion.measure}" %></th>
+        <% end %>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th><%= @first_tour_winner.name %></th>
+        <% Criterion.all.each do |criterion| %>
+            <th><%= @first_tour_winner.fetch_vector_by(criterion.id).mark.name %></th>
+        <% end %>
+      </tr>
+      </tbody>
+    </table>
+<% else %>
+    <h1>Второй тур</h1>
+
+    <table>
+      <thead>
+      <tr>
+        <th>Альтернатива</th>
+        <th>Кол-во голосов</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @second_tour.each do |result| %>
+          <tr>
+            <th><%= result.first.name %></th>
+            <th><%= (result.last * 100).round(1) %>%</th>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <% if @second_tour_winner.present? %>
+        <table>
+          <thead>
+          <tr>
+            <th>Лучшая Альтернатива</th>
+            <% Criterion.all.each do |criterion| %>
+                <th><%= "#{criterion.name}, #{criterion.measure}" %></th>
+            <% end %>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th><%= @second_tour_winner.name %></th>
+            <% Criterion.all.each do |criterion| %>
+                <th><%= @second_tour_winner.fetch_vector_by(criterion.id).mark.name %></th>
+            <% end %>
+          </tr>
+          </tbody>
+        </table>
+    <% else %>
+        <h1>Третий тур</h1>
+
+        <table>
+          <thead>
+          <tr>
+            <th>Альтернатива</th>
+            <th>Кол-во голосов</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @third_tour.each do |result| %>
+              <tr>
+                <th><%= result.first.name %></th>
+                <th><%= (result.last * 100).round(1) %>%</th>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+
+        <% if @third_tour_winner.present? %>
+            <table>
+              <thead>
+              <tr>
+                <th>Лучшая Альтернатива</th>
+                <% Criterion.all.each do |criterion| %>
+                    <th><%= "#{criterion.name}, #{criterion.measure}" %></th>
+                <% end %>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <th><%= @third_tour_winner.name %></th>
+                <% Criterion.all.each do |criterion| %>
+                    <th><%= @third_tour_winner.fetch_vector_by(criterion.id).mark.name %></th>
+                <% end %>
+              </tr>
+              </tbody>
+            </table>
+        <% else %>
+            <h1>Победителя не может быть выявлен</h1>
+        <% end %>
+
+
+    <% end %>
+
+
+<% end %>

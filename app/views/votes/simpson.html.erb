@@ -1,0 +1,56 @@
+<h1>Отношения</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Отношение</th>
+    <th>Результат</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%- @relations.each do |relation| -%>
+      <tr>
+        <th><%= "F(#{relation[0].name}, #{relation[1].name})" %></th>
+        <th><%= relation.last %></th>
+      </tr>
+  <%- end -%>
+  </tbody>
+</table>
+
+<h1>Минимумы</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Альтернатива</th>
+    <th>Минимум</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%- @minimums.each do |minimum| -%>
+      <tr>
+        <th><%= minimum.first.name %></th>
+        <th><%= minimum.last %></th>
+      </tr>
+  <%- end -%>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+  <tr>
+    <th>Лучшая Альтернатива</th>
+    <% Criterion.all.each do |criterion| %>
+        <th><%= "#{criterion.name}, #{criterion.measure}" %></th>
+    <% end %>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <th><%= @winner.name %></th>
+    <% Criterion.all.each do |criterion| %>
+        <th><%= @winner.fetch_vector_by(criterion.id).mark.name %></th>
+    <% end %>
+  </tr>
+  </tbody>
+</table>

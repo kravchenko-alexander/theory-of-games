@@ -2,6 +2,7 @@ class Alternative < ApplicationRecord
   include Comparable
 
   has_many :vectors, dependent: :destroy
+  has_many :expert_alternative_ranks, dependent: :destroy
 
   validates :name, presence: true
 

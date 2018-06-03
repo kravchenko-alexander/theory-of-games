@@ -1,0 +1,20 @@
+<table>
+  <thead>
+  <tr>
+    <th>Эксперт</th>
+    <% Alternative.count.times do |i| %>
+        <th><%= "Голос-#{i+1}" %></th>
+    <% end %>
+  </tr>
+  </thead>
+  <tbody>
+  <%- Expert.all.each do |expert| -%>
+      <tr>
+        <th><%= expert.name %></th>
+        <% expert.expert_alternative_ranks.order(rank: :asc).all.each do |rank| %>
+            <th><%= rank.alternative.name %></th>
+        <% end %>
+      </tr>
+  <%- end -%>
+  </tbody>
+</table>

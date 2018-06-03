@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180602163448) do
+ActiveRecord::Schema.define(version: 20180602175050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(version: 20180602163448) do
     t.string "optim_type"
     t.string "measure"
     t.string "scale_type"
+  end
+
+  create_table "expert_alternative_ranks", force: :cascade do |t|
+    t.bigint "expert_id"
+    t.bigint "alternative_id"
+    t.integer "rank"
+    t.index ["alternative_id"], name: "index_expert_alternative_ranks_on_alternative_id"
+    t.index ["expert_id"], name: "index_expert_alternative_ranks_on_expert_id"
   end
 
   create_table "expert_criterion_marks", force: :cascade do |t|
